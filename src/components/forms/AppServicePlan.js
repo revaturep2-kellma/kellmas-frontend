@@ -1,6 +1,6 @@
 import React from 'react';
 
-class AppService extends React.Component {
+class AppServicePlan extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +14,7 @@ class AppService extends React.Component {
     return (
       <div className="homeCon">
         <h1>App Servicee</h1>   
-        <label for="Name">Name</label><br/>
+        <label for="servicePlanName">Serive Plan Name</label><br/>
         <input 
           type="text" 
           value={this.state.servicePlanName}
@@ -25,5 +25,5 @@ class AppService extends React.Component {
   }
 }
   
-export default AppService;
+export default AppServicePlan;
   

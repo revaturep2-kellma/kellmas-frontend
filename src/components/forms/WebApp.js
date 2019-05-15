@@ -15,7 +15,7 @@ class AppService extends React.Component {
     return (
       <div className="homeCon">
         <h1>App Servicee</h1>   
-        <label for="Web App Name">Web App Name</label><br/>
+        <label for="webAppName">Web App Name</label><br/>
         <input 
           type="text" 
           value={this.state.webAppName}
