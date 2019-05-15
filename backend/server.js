@@ -1,20 +1,14 @@
 const express = require('express');
 const morgan = require('morgan');
-const passport = require('passport');
 const db = require('./db');
-const localStrategy = require('./passport/local-strategy');
 
-const PORT = 3001;
+const PORT = 30662;
 const app = express();
 
 // Set up logger
 app.use(morgan('dev'));
 
-// Set up passport
-passport.use(localStrategy);
-app.use(passport.initialize());
-app.use(passport.session());
-
+// Start server
 app.listen(PORT, () => {
   console.log(`Server up on PORT ${PORT}`);
 
