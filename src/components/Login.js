@@ -28,6 +28,8 @@ class Login extends React.Component {
             onChange={(e) => this.setState({password: e.target.value})}
           />
         </div>
+        {/* this button will change later */}
+        <button onClick={() => this.props.history.push('/home')}>Home</button>
         <button onClick={() => this.props.history.push('/register')}>Sign Up</button>
       </div>
     );

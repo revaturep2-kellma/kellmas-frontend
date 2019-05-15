@@ -1,42 +1,42 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export class Vm extends Component {
     state = {
-        vmName: '',
-        vmAdminName: '',
-        groupName: '',
-        size: 'B1S'
+      vmName: '',
+      vmAdminName: '',
+      groupName: '',
+      size: 'B1S'
     }
 
-  render() {
-    return (
-      <div className="vmForm">
-      <h1>Make a damn VM</h1>
-        <form>
+    render() {
+      return (
+        <div className="vmForm">
+          <h1>Make a damn VM</h1>
+          <form>
             <input
-                type="text"
-                value={this.state.vmName}
-                onChange={(e) => this.setState({vmName: e.target.value})}
+              type="text"
+              value={this.state.vmName}
+              onChange={(e) => this.setState({vmName: e.target.value})}
             />
             <input
-                type="text"
-                value={this.state.vmAdminName}
-                onChange={(e) => this.setState({vmAdminName: e.target.value})}
+              type="text"
+              value={this.state.vmAdminName}
+              onChange={(e) => this.setState({vmAdminName: e.target.value})}
             />
             <input
-                type="text"
-                value={this.state.groupName}
-                onChange={(e) => this.setState({groupName: e.target.value})}
+              type="text"
+              value={this.state.groupName}
+              onChange={(e) => this.setState({groupName: e.target.value})}
             />
             {/* <input
                 type="text"
                 value={this.state.size}
                 onChange={(e) => this.setState({vmName: e.target.value})}
             /> */}
-        </form>
-      </div>
-    )
-  }
+          </form>
+        </div>
+      );
+    }
 }
 
-export default Vm
+export default Vm;

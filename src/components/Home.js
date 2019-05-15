@@ -13,6 +13,8 @@ class Home extends React.Component {
     return (
       <div className="homeCon">
         <h1>Kellma Home</h1>   
+        
+        <button onClick={() => this.props.history.push('/')}>Back to Login</button>
       </div>
     );
   }
