@@ -1,4 +1,5 @@
 import React from 'react';
+import queryString from 'query-string';
 
 class Login extends React.Component {
   constructor(props) {
@@ -8,32 +9,29 @@ class Login extends React.Component {
       password: ''
     };
   }
-  
-  
+
+  componentDidMount() {
+    if (this.props.location.search) {
+      const authToken = queryString.parse(this.props.location.search).token;
+
+      if (authToken) {
+        localStorage.setItem('authToken', authToken);
+      }
+    }
+  }
+
   render() {
     return (
       <div className="loginCon">
         <h1>Kellma Cloud Login</h1>
-        <div>
-          <label for="Email">Email</label><br/>
-          <input 
-            type="text" 
-            value={this.state.email}
-            onChange={(e) => this.setState({email: e.target.value})}
-          /><br/>
-          <label for="Password">Password</label><br/>
-          <input 
-            type="text" 
-            value={this.state.password}
-            onChange={(e) => this.setState({password: e.target.value})}
-          />
-        </div>
         {/* this button will change later */}
         <button onClick={() => this.props.history.push('/home')}>Home</button>
         <button onClick={() => this.props.history.push('/register')}>Sign Up</button>
+
+        <a href="http://localhost:3001/login">login</a>
       </div>
     );
   }
 }
-  
+
 export default Login;
