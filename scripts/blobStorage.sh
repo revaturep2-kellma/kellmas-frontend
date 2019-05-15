@@ -6,9 +6,7 @@ location=southcentralus
 servicePlanName=$3
 appName=$4
 
-# Create a resource group.
-az group create --location $location --name $groupName
-
+# Create a storage account
 az storage account create \
     --name $storageAccountName \
     --location $location \
@@ -27,3 +25,4 @@ az storage container create -n images --account-name $storageAccountName \
 
 az webapp config appsettings set -g $groupName -n $appName --settings AZURE_STORAGE_ACCOUNT_NAME=$appName
 az webapp config appsettings set -g $groupName -n $appName --settings AZURE_STORAGE_ACCOUNT_ACCESS_KEY=$blobStorageAccountKey
+
