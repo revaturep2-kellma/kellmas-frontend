@@ -12,7 +12,6 @@ export class Vm extends Component {
     return (
       <div className="vmForm">
       <h1>Make a damn VM</h1>
-        <form>
             <input
                 type="text"
                 value={this.state.vmName}
@@ -33,7 +32,6 @@ export class Vm extends Component {
                 value={this.state.size}
                 onChange={(e) => this.setState({vmName: e.target.value})}
             /> */}
-        </form>
       </div>
     )
   }
