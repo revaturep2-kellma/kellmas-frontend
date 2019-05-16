@@ -1,6 +1,7 @@
 import React from 'react';
 import queryString from 'query-string';
 import { BASE_URL } from '../config';
+import logo from '../cloudlife.png';
 
 class Login extends React.Component {
   constructor(props) {
@@ -26,7 +27,8 @@ class Login extends React.Component {
 
     return (
       <div className="loginCon">
-        <h1>Kellma Cloud Login</h1>
+        <img src={logo} className="cloudLogo"></img>
+
         <div className="buttonsDiv">
           <a className="button" href={`${BASE_URL}/auth/openid/login`}>login</a>
         </div>
