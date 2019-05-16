@@ -6,6 +6,12 @@ location=southcentralus
 servicePlanName=$3
 appName=$4
 
+storageCheck=$(az storage account list --query [].name | grep -E $storageAccountName)
+
+if [ -n "$storageCheck" ]; then 
+    echo "this storage name already exist please choose another"
+fi
+
 # Create a storage account
 az storage account create \
     --name $storageAccountName \
