@@ -22,11 +22,6 @@ export class Vm extends Component {
             value={this.state.vmAdminName}
             onChange={(e) => this.setState({vmAdminName: e.target.value})}
           />
-          <input
-            type="text"
-            value={this.state.groupName}
-            onChange={(e) => this.setState({groupName: e.target.value})}
-          />
           {/* <input
                 type="text"
                 value={this.state.size}
