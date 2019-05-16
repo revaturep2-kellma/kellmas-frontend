@@ -43,7 +43,7 @@ class Login extends React.Component {
         <button onClick={() => this.props.history.push('/home')}>Home</button>
         <button onClick={() => this.props.history.push('/register')}>Sign Up</button>
 
-        <a href={`${BASE_URL}/login`}>login</a>
+        <a href={`${BASE_URL}/auth/openid/login`}>login</a>
 
         <button onClick={() => this.someFunc()}>fetch</button>
       </div>
