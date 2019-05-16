@@ -8,7 +8,7 @@ class SignUp extends React.Component {
     super(props);
     this.state = {
       email: '',
-      userName: '',
+      username: '',
       password: '',
       azDomain: '.onmicrosoft.com'
     };
@@ -21,6 +21,7 @@ class SignUp extends React.Component {
     let newEmailDom = removeCom[0];
     let userPrincipalName = username + '@' + newEmailDom + azDomain;
 
+    console.log(username);
     fetch(`${BASE_URL}/users`, {
       method: 'POST',
       headers: {
@@ -59,21 +60,21 @@ class SignUp extends React.Component {
         <div className="signUpCan">
           <img src={logo} alt="logo" className="cloudLogo"></img>
           <TextField
-            type="text" 	         
+            type="text"
             variant="outlined"
             label="Email"
             value={this.state.email}
             onChange={(e) => this.setState({email: e.target.value})}
           /><br/><br/>
           <TextField
-            type="text" 	         
+            type="text"
             variant="outlined"
             label="Username"
-            value={this.state.userName}
-            onChange={(e) => this.setState({userName: e.target.value})}
+            value={this.state.username}
+            onChange={(e) => this.setState({username: e.target.value})}
           /><br/><br/>
           <TextField
-            type="text" 	         
+            type="text"
             variant="outlined"
             label="Password"
             value={this.state.password}
