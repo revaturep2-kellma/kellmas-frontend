@@ -17,22 +17,9 @@ class Login extends React.Component {
 
       if (authToken) {
         localStorage.setItem('authToken', authToken);
+        this.props.history.push('/home');
       }
     }
-  }
-
-  someFunc() {
-    const authToken = localStorage.getItem('authToken');
-
-    fetch(`${BASE_URL}/main/`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${authToken}`
-      }
-    })
-      .then(res => res.json())
-      .then(res => console.log(res))
-      .catch(err => console.error(err));
   }
 
   render() {
@@ -44,8 +31,6 @@ class Login extends React.Component {
         <button onClick={() => this.props.history.push('/register')}>Sign Up</button>
 
         <a href={`${BASE_URL}/auth/openid/login`}>login</a>
-
-        <button onClick={() => this.someFunc()}>fetch</button>
       </div>
     );
   }
