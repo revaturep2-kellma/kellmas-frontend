@@ -12,9 +12,12 @@ class Home extends React.Component {
   render() {
     return (
       <div className="homeCon">
-        <h1>Kellma Home</h1>   
-        
-        <button onClick={() => this.props.history.push('/')}>Back to Login</button>
+        <div class="sidenav">
+          <a href="#about">Virtual Machine</a>
+          <a href="#services">App Services Plan</a>
+          <a href="#contact">Web App</a>
+          <a href="#clients">Blob Storage</a>
+        </div>
       </div>
     );
   }
