@@ -1,5 +1,6 @@
 import React from 'react';
 import queryString from 'query-string';
+import { BASE_URL } from '../config';
 
 class Login extends React.Component {
   constructor(props) {
@@ -20,6 +21,20 @@ class Login extends React.Component {
     }
   }
 
+  someFunc() {
+    const authToken = localStorage.getItem('authToken');
+
+    fetch(`${BASE_URL}/main/`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${authToken}`
+      }
+    })
+      .then(res => res.json())
+      .then(res => console.log(res))
+      .catch(err => console.error(err));
+  }
+
   render() {
     return (
       <div className="loginCon">
@@ -28,7 +43,9 @@ class Login extends React.Component {
         <button onClick={() => this.props.history.push('/home')}>Home</button>
         <button onClick={() => this.props.history.push('/register')}>Sign Up</button>
 
-        <a href="http://localhost:3001/login">login</a>
+        <a href={`${BASE_URL}/login`}>login</a>
+
+        <button onClick={() => this.someFunc()}>fetch</button>
       </div>
     );
   }
