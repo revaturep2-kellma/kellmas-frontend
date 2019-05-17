@@ -7,19 +7,15 @@ class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
       username: '',
       password: '',
-      azDomain: '.onmicrosoft.com'
+      azDomain: 'kenttokunagagmail.onmicrosoft.com'
     };
   }
 
-  submit(username, password, email, azDomain) {
+  submit(username, password, azDomain) {
 
-    let removeAtSign = email.split('@').join('');
-    let removeCom = removeAtSign.split('.com');
-    let newEmailDom = removeCom[0];
-    let userPrincipalName = username + '@' + newEmailDom + azDomain;
+    let userPrincipalName = username + '@' + azDomain;
 
     console.log(username);
     fetch(`${BASE_URL}/users`, {
@@ -62,13 +58,6 @@ class SignUp extends React.Component {
           <TextField
             type="text"
             variant="outlined"
-            label="Email"
-            value={this.state.email}
-            onChange={(e) => this.setState({email: e.target.value})}
-          /><br/><br/>
-          <TextField
-            type="text"
-            variant="outlined"
             label="Username"
             value={this.state.username}
             onChange={(e) => this.setState({username: e.target.value})}
@@ -81,7 +70,7 @@ class SignUp extends React.Component {
             onChange={(e) => this.setState({password: e.target.value})}
           /><br/><br/>
 
-          <button className="regBut" onClick={ () => {this.submit(this.state.username, this.state.password, this.state.email, this.state.azDomain);} }>Sign Up</button>
+          <button className="regBut" onClick={ () => {this.submit(this.state.username, this.state.password, this.state.azDomain);} }>Sign Up</button>
         </div>
       </div>
     );
