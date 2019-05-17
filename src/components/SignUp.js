@@ -53,7 +53,7 @@ class SignUp extends React.Component {
   render() {
     return(
       <div>
-        <div className="signUpCan">
+        <div className="container">
           <img src={logo} alt="logo" className="cloudLogo"></img>
           <TextField
             type="text"

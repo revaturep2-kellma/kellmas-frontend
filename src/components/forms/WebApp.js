@@ -4,7 +4,6 @@ class AppService extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      groupName: '',
       servicePlanName: '',
       webAppName: ''
     };
@@ -13,7 +12,7 @@ class AppService extends React.Component {
   
   render() {
     return (
-      <div className="homeCon">
+      <div className="container">
         <h1>App Servicee</h1>   
         <label for="webAppName">Web App Name</label><br/>
         <input 

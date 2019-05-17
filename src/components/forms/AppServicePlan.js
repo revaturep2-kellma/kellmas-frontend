@@ -4,7 +4,6 @@ class AppServicePlan extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      groupName: '',
       ServicePlanName: ''
     };
   }
@@ -12,7 +11,7 @@ class AppServicePlan extends React.Component {
   
   render() {
     return (
-      <div className="homeCon">
+      <div className="container">
         <h1>App Servicee</h1>   
         <label for="servicePlanName">Serive Plan Name</label><br/>
         <input 

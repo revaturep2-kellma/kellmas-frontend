@@ -4,7 +4,6 @@ class BlobStorageAccount extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      groupName: '',
       webAppName: '',
       appServicePlanName: '',
       storageAccountName: ''
@@ -14,7 +13,7 @@ class BlobStorageAccount extends React.Component {
   
   render() {
     return (
-      <div className="homeCon">
+      <div className="container">
         <h1>App Servicee</h1>   
         <label for="storageAccountName">Storage Account Name</label><br/>
         <input 

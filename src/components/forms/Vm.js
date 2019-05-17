@@ -4,13 +4,12 @@ export class Vm extends Component {
     state = {
       vmName: '',
       vmAdminName: '',
-      groupName: '',
       size: 'B1S'
     }
 
     render() {
       return (
-        <div className="vmForm">
+        <div className="container">
           <h1>Make a damn VM</h1>
           <input
             type="text"

@@ -26,7 +26,7 @@ class Login extends React.Component {
   render() {
 
     return (
-      <div className="loginCon">
+      <div className="container">
         <img src={logo} alt="logo" className="cloudLogo"></img>
 
         <div className="buttonsDiv">
