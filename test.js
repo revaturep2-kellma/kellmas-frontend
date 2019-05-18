@@ -14,3 +14,10 @@ function domGet () {
 }
 
 console.log(domGet(name, email, azDomain));
+
+componentDidMount() {
+  fetch('https://api.mydomain.com')
+    .then(response => response.json())
+    .then(data => this.setState({ data }));
+}
+
