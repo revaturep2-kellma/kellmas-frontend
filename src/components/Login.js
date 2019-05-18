@@ -1,6 +1,6 @@
 import React from 'react';
 import queryString from 'query-string';
-import { BASE_URL } from '../config';
+import { LOGIN_BASE_URL } from '../config';
 import logo from '../newcloudlife.png';
 
 class Login extends React.Component {
@@ -30,10 +30,10 @@ class Login extends React.Component {
         <img src={logo} alt="logo" className="cloudLogo"></img>
 
         <div className="buttonsDiv">
-          <a className="button" href={`${BASE_URL}/auth/openid/login`}>login</a>
+          <a className="button" href={`${LOGIN_BASE_URL}/auth/openid/login`}>login</a>
           <p>Don&#39;t have an account? <a href="SignUp">Sign Up</a></p>
         </div>
-        
+
       </div>
     );
   }
