@@ -1,6 +1,6 @@
 import React from 'react';
 import jwtDecode from 'jwt-decode';
-import { BASE_URL } from '../config';
+// import { BASE_URL } from '../config';
 import { Redirect } from 'react-router-dom';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
