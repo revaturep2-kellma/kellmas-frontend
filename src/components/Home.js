@@ -14,9 +14,10 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      groupName: 'kellmaGroup',
+
     };
   }
+
 
   someFunc() {
     const authToken = localStorage.getItem('authToken');
@@ -40,10 +41,12 @@ class Home extends React.Component {
   render() {
     const authToken = localStorage.getItem('authToken');
     let decodedToken;
+    let groupName;
 
     if (authToken) {
       decodedToken = jwtDecode(authToken);
-      // console.log(decodedToken.preferred_username);
+      let email = decodedToken.preferred_username.split('@');
+      groupName = email[0];
     } else {
       return (
         <Redirect to="/" />
@@ -53,16 +56,16 @@ class Home extends React.Component {
     return (
       <div className="container">
         <div>
-          <CreateUsers />
-          <CreateVM />
-          <CreateWebApp />
-          <AppServicePlan />
-          <BlobStorageAccount />
-          <Network />
-          <SQL />
+          <CreateUsers groupName={groupName} />
+          <CreateVM groupName={groupName} />
+          <CreateWebApp groupName={groupName} />
+          <AppServicePlan groupName={groupName} />
+          <BlobStorageAccount groupName={groupName} />
+          <Network groupName={groupName} />
+          <SQL groupName={groupName} />
 
-          {/* <span>some spacer text so I can see my damn name:&nbsp;</span> */}
-          {/* <span>{decodedToken.preferred_username}</span> */}
+          <span>some spacer text so I can see my damn name:&nbsp;</span>
+          <span>{decodedToken.preferred_username}</span>
           <button onClick={() => this.logout()}>log out</button>
         </div>
       </div>

@@ -7,7 +7,6 @@ export class CreateVM extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      groupName: 'kellmaGroup',
       vmName: '',
       openVM: false
     };
