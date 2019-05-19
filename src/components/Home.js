@@ -18,6 +18,8 @@ class Home extends React.Component {
     };
   }
 
+  
+
 
   someFunc() {
     const authToken = localStorage.getItem('authToken');
@@ -65,7 +67,7 @@ class Home extends React.Component {
           <SQL groupName={groupName} />
 
           <span>some spacer text so I can see my damn name:&nbsp;</span>
-          <span>{decodedToken.preferred_username}</span>
+          <span>{groupName}</span>
           <button onClick={() => this.logout()}>log out</button>
         </div>
       </div>

@@ -14,8 +14,6 @@ class SignUp extends React.Component {
 
   submit(username, password, azDomain) {
 
-    let userPrincipalName = username + '@' + azDomain;
-
     console.log(username);
     fetch(`${BASE_URL}/adminUsers`, {
       method: 'POST',

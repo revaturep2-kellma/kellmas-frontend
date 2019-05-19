@@ -24,7 +24,6 @@ export class CreateUsers extends Component {
 
   submit(username, password, azDomain) {
 
-    let userPrincipalName = username + '@' + azDomain;
 
     fetch(`${BASE_URL}/newUsers`, {
       method: 'POST',
@@ -58,7 +57,6 @@ export class CreateUsers extends Component {
   }
 
   render() {
-    console.log(this.state.groupName);
     return (
       <div className="container">
         <Button onClick={this.handleOpenUser}>Open User</Button>
