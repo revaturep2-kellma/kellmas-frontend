@@ -28,10 +28,12 @@ class SQL extends React.Component {
 
   submit(groupName, serverUsername, serverPassword, serverName, dbName) {
 
+    const authToken = localStorage.getItem('authToken');
+
     fetch(`${BASE_URL}/newUsers`, {
       method: 'POST',
       headers: {
-        
+        Authorization: `Bearer ${authToken}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
