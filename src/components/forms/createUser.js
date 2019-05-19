@@ -8,11 +8,9 @@ export class CreateUsers extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      groupName: this.props.groupName,
-      displayName: '',
-      userPassword: '',
+      username: '',
+      password: '',
       azDomain: 'kenttokunagagmail.onmicrosoft.com',
-      role: 'reader',
       openUser: false
     };
   }
@@ -25,22 +23,18 @@ export class CreateUsers extends Component {
     this.setState({ openUser: false });
   };
 
-  submit(groupName, displayName, userPassword, role, azDomain) {
+  submit(username, password, azDomain) {
 
-    let userPrincipalName = displayName + '@' + azDomain;
-    const authToken = localStorage.getItem('authToken');
+    let userPrincipalName = password + '@' + azDomain;
 
-    fetch(`${BASE_URL}/users`, {
+    fetch(`${BASE_URL}/newUsers`, {
       method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${authToken}`
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        groupName: groupName,
-        displayName: displayName,
-        userPassword: userPassword,
-        role: role,
+        username: username,
+        password: password,
         userPrincipalName: userPrincipalName
       })
     })
@@ -82,17 +76,17 @@ export class CreateUsers extends Component {
               type="text"
               variant="outlined"
               label="Display Name"
-              value={this.state.displayName}
-              onChange={(e) => this.setState({displayName: e.target.value})}
+              value={this.state.username}
+              onChange={(e) => this.setState({username: e.target.value})}
             /><br/>
             <TextField
               type="text"
               variant="outlined"
               label="Password"
-              value={this.state.userPassword}
-              onChange={(e) => this.setState({userPassword: e.target.value})}
+              value={this.state.password}
+              onChange={(e) => this.setState({password: e.target.value})}
             /><br/>
-            <button className="regBut" onClick={ () => {this.submit(this.state.groupName, this.state.displayName, this.state.userPassword, this.state.role, this.state.azDomain);} }>Create User</button>
+            <button className="regBut" onClick={ () => {this.submit(this.state.username, this.state.password, this.state.azDomain);} }>Create User</button>
           </div>
         </Modal>
       </div>

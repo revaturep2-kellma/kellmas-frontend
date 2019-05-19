@@ -56,7 +56,7 @@ class Home extends React.Component {
     return (
       <div className="container">
         <div>
-          <CreateUsers groupName={groupName} />
+          <CreateUsers />
           <CreateVM groupName={groupName} />
           <CreateWebApp groupName={groupName} />
           <AppServicePlan groupName={groupName} />
