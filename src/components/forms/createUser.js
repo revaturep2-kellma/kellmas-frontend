@@ -11,7 +11,7 @@ export class CreateUsers extends Component {
       groupName: this.props.groupName,
       displayName: '',
       userPassword: '',
-      domain: 'kenttokunagagmail.onmicrosoft.com',
+      azDomain: 'kenttokunagagmail.onmicrosoft.com',
       role: 'reader',
       openUser: false
     };
@@ -25,12 +25,11 @@ export class CreateUsers extends Component {
     this.setState({ openUser: false });
   };
 
-  submit(username, password, azDomain) {
+  submit(groupName, displayName, userPassword, role, azDomain) {
 
-    let userPrincipalName = username + '@' + azDomain;
+    let userPrincipalName = displayName + '@' + azDomain;
     const authToken = localStorage.getItem('authToken');
 
-    console.log(username);
     fetch(`${BASE_URL}/users`, {
       method: 'POST',
       headers: {
@@ -38,8 +37,10 @@ export class CreateUsers extends Component {
         Authorization: `Bearer ${authToken}`
       },
       body: JSON.stringify({
-        username: username,
-        password: password,
+        groupName: groupName,
+        displayName: displayName,
+        userPassword: userPassword,
+        role: role,
         userPrincipalName: userPrincipalName
       })
     })
@@ -91,7 +92,7 @@ export class CreateUsers extends Component {
               value={this.state.userPassword}
               onChange={(e) => this.setState({userPassword: e.target.value})}
             /><br/>
-            <button className="regBut">Create User</button>
+            <button className="regBut" onClick={ () => {this.submit(this.state.groupName, this.state.displayName, this.state.userPassword, this.state.role, this.state.azDomain);} }>Create User</button>
           </div>
         </Modal>
       </div>

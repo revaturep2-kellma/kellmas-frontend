@@ -7,6 +7,7 @@ class AppServicePlan extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      groupName: this.props.groupName,
       ServicePlanName: '',
       openAPS: false
     };

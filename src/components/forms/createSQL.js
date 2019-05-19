@@ -7,6 +7,7 @@ class SQL extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      groupName: this.props.groupName,
       postSqlUsename: '',
       postSqlPassword: '', 
       openSQL: false,

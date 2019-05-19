@@ -7,6 +7,7 @@ class WebApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      groupName: this.props.groupName,
       webAppName: '',
       webAppGitRepo: '',
       openWebApp: false

@@ -7,6 +7,7 @@ class Network extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      groupName: this.props.groupName,
       netName: '',
       openNet: false
     };

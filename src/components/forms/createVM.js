@@ -7,6 +7,7 @@ export class CreateVM extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      groupName: this.props.groupName,
       vmName: '',
       openVM: false
     };

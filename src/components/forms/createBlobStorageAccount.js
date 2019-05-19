@@ -7,7 +7,7 @@ class BlobStorageAccount extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      groupName: 'kellmaGroup',
+      groupName: this.props.groupName,
       blobName: '',
       openBlob: false
     };
