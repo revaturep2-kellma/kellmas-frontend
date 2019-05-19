@@ -25,11 +25,12 @@ export class CreateUsers extends Component {
 
   submit(groupName, username, password) {
 
+    const authToken = localStorage.getItem('authToken');
 
     fetch(`${BASE_URL}/newUsers`, {
       method: 'POST',
       headers: {
-        
+        Authorization: `Bearer ${authToken}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
