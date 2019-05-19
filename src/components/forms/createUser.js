@@ -10,7 +10,6 @@ export class CreateUsers extends Component {
     this.state = {
       username: '',
       password: '',
-      azDomain: 'mschw90gmail.onmicrosoft.com',
       openUser: false
     };
   }
@@ -36,7 +35,6 @@ export class CreateUsers extends Component {
       body: JSON.stringify({
         username: username,
         password: password,
-        userPrincipalName: userPrincipalName
       })
     })
       .then((response) => response.json())
@@ -87,7 +85,7 @@ export class CreateUsers extends Component {
               value={this.state.password}
               onChange={(e) => this.setState({password: e.target.value})}
             /><br/>
-            <button className="regBut" onClick={ () => {this.submit(this.state.username, this.state.password, this.state.azDomain);} }>Create User</button>
+            <button className="regBut" onClick={ () => {this.submit(this.state.username, this.state.password);} }>Create User</button>
           </div>
         </Modal>
       </div>

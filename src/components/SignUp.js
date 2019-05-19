@@ -9,7 +9,6 @@ class SignUp extends React.Component {
     this.state = {
       username: '',
       password: '',
-      azDomain: 'mschw90gmail.onmicrosoft.com'
     };
   }
 
@@ -26,7 +25,6 @@ class SignUp extends React.Component {
       body: JSON.stringify({
         username: username,
         password: password,
-        userPrincipalName: userPrincipalName
       })
     })
       .then((response) => response.json())
@@ -70,7 +68,7 @@ class SignUp extends React.Component {
             onChange={(e) => this.setState({password: e.target.value})}
           /><br/><br/>
 
-          <button className="regBut" onClick={ () => {this.submit(this.state.username, this.state.password, this.state.azDomain);} }>Sign Up</button>
+          <button className="regBut" onClick={ () => {this.submit(this.state.username, this.state.password);} }>Sign Up</button>
         </div>
       </div>
     );
