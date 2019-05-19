@@ -9,7 +9,7 @@ class SQL extends React.Component {
     super(props);
     this.state = {
       groupName: this.props.groupName,
-      serverUsename: '',
+      serverUsername: '',
       serverPassword: '', 
       serverName: '',
       dbName: '',
@@ -81,8 +81,8 @@ class SQL extends React.Component {
               type="text"
               variant="outlined"
               label="Server Username"
-              value={this.state.serverUsename}
-              onChange={(e) => this.setState({serverUsename: e.target.value})}
+              value={this.state.serverUsername}
+              onChange={(e) => this.setState({serverUsername: e.target.value})}
             /><br/>
             <TextField
               type="text"
