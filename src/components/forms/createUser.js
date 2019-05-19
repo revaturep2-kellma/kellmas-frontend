@@ -8,6 +8,7 @@ export class CreateUsers extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      groupName: this.props.groupName,
       username: '',
       password: '',
       openUser: false
@@ -22,7 +23,7 @@ export class CreateUsers extends Component {
     this.setState({ openUser: false });
   };
 
-  submit(username, password, azDomain) {
+  submit(groupName, username, password) {
 
 
     fetch(`${BASE_URL}/newUsers`, {
@@ -32,6 +33,7 @@ export class CreateUsers extends Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
+        groupName: groupName,
         username: username,
         password: password,
       })
@@ -83,7 +85,7 @@ export class CreateUsers extends Component {
               value={this.state.password}
               onChange={(e) => this.setState({password: e.target.value})}
             /><br/>
-            <button className="regBut" onClick={ () => {this.submit(this.state.username, this.state.password);} }>Create User</button>
+            <button className="regBut" onClick={ () => {this.submit(this.state.groupName, this.state.username, this.state.password);} }>Create User</button>
           </div>
         </Modal>
       </div>
