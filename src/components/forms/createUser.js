@@ -10,7 +10,7 @@ export class CreateUsers extends Component {
     this.state = {
       username: '',
       password: '',
-      azDomain: 'kenttokunagagmail.onmicrosoft.com',
+      azDomain: 'mschw90gmail.onmicrosoft.com',
       openUser: false
     };
   }
@@ -25,11 +25,12 @@ export class CreateUsers extends Component {
 
   submit(username, password, azDomain) {
 
-    let userPrincipalName = password + '@' + azDomain;
+    let userPrincipalName = username + '@' + azDomain;
 
     fetch(`${BASE_URL}/newUsers`, {
       method: 'POST',
       headers: {
+        
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
@@ -44,7 +45,7 @@ export class CreateUsers extends Component {
        * make sure to check for responseJson.success! */
         if(responseJson.success){
           // return this.props.navigation.goBack();
-          return this.props.history.push('/');
+          this.handleCloseUser();
 
         }else{
           alert(responseJson.error);

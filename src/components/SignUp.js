@@ -9,7 +9,7 @@ class SignUp extends React.Component {
     this.state = {
       username: '',
       password: '',
-      azDomain: 'kenttokunagagmail.onmicrosoft.com'
+      azDomain: 'mschw90gmail.onmicrosoft.com'
     };
   }
 
