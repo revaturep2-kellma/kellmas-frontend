@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import CreateUsers from './forms/createUser';
 import CreateVM from './forms/createVM';
 import CreateWebApp from './forms/createWebApp';
-import AppServicePlan from './forms/createAppServicePlan';
+// import AppServicePlan from './forms/createAppServicePlan';
 import BlobStorageAccount from './forms/createBlobStorageAccount';
 import Network from './forms/createNetwork';
 import SQL from './forms/createSQL';
@@ -66,7 +66,7 @@ class Home extends React.Component {
           <CreateUsers groupName={groupName} />
           <CreateVM groupName={groupName} />
           <CreateWebApp groupName={groupName} />
-          <AppServicePlan groupName={groupName} />
+          {/* <AppServicePlan groupName={groupName} /> */}
           <BlobStorageAccount groupName={groupName} />
           <Network groupName={groupName} />
           <SQL groupName={groupName} />
