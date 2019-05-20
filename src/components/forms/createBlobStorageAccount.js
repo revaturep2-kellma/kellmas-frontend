@@ -27,7 +27,7 @@ class BlobStorageAccount extends React.Component {
 
     const authToken = localStorage.getItem('authToken');
 
-    fetch(`${BASE_URL}/newUsers`, {
+    fetch(`${BASE_URL}/newBlob`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${authToken}`,
