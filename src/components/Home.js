@@ -42,6 +42,22 @@ class Home extends React.Component {
     window.location = `${BASE_URL}/auth/openid/logout`;
   }
 
+  deleteResource(id) {
+    const authToken = localStorage.getItem('authToken');
+
+    console.log(id);
+    fetch(`${BASE_URL}/resources`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${authToken}`
+      },
+      body: JSON.stringify({id})
+    })
+      .then(() => this.getResources())
+      .catch(err => console.error(err));
+  }
+
   render() {
     const authToken = localStorage.getItem('authToken');
     let decodedToken;
@@ -58,7 +74,7 @@ class Home extends React.Component {
     }
     // console.log(this.state.openVM);
     const resources = this.state.resources.map(resource => {
-      return <li key={resource.name}>{resource.name} <span>({resource.type})</span></li>;
+      return <li key={resource.id}><button onClick={() => this.deleteResource(resource.id)}>Delete</button>{resource.name} <span>({resource.type})</span></li>;
     });
 
     return (
