@@ -20,6 +20,7 @@ class Home extends React.Component {
 
   componentDidMount() {
     this.getResources();
+    setInterval(this.getResources.bind(this), 1000 * 60);
   }
 
   getResources() {
