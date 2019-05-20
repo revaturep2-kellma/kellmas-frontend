@@ -3,6 +3,7 @@ import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { BASE_URL } from '../../config';
+import Locations from  '../Location';
 
 class BlobStorageAccount extends React.Component {
   constructor(props) {
@@ -10,8 +11,13 @@ class BlobStorageAccount extends React.Component {
     this.state = {
       groupName: this.props.groupName,
       blobName: '',
+      location:'',
       openBlob: false
     };
+  }
+
+  handleLocation = (location) => {
+    this.setState({location: location});
   }
 
   //Blob handlers
@@ -23,7 +29,7 @@ class BlobStorageAccount extends React.Component {
     this.setState({ openBlob: false });
   };
 
-  submit(groupName, blobName) {
+  submit(groupName, blobName, location) {
 
     const authToken = localStorage.getItem('authToken');
 
@@ -35,7 +41,8 @@ class BlobStorageAccount extends React.Component {
       },
       body: JSON.stringify({
         groupName: groupName,
-        blobName: blobName
+        blobName: blobName,
+        location: location
       })
     })
       .then((response) => response.json())
@@ -60,6 +67,7 @@ class BlobStorageAccount extends React.Component {
   
   
   render() {
+    console.log(this.state.location);
     return (
       <div className="container">
         <Button onClick={this.handleOpenBlob}>Open Blob</Button>
@@ -70,9 +78,7 @@ class BlobStorageAccount extends React.Component {
           onClose={this.handleCloseBlob}
         >
           <div className="paperCard">
-            <div className="h1Div">
-              <h1>Create Blob Storage</h1>
-            </div>
+            <h1>Create Blob Storage</h1>
               
             <TextField
               type="text"
@@ -81,7 +87,8 @@ class BlobStorageAccount extends React.Component {
               value={this.state.blobName}
               onChange={(e) => this.setState({blobName: e.target.value})}
             /><br/>
-            <button className="regBut" onClick={ () => {this.submit(this.state.groupName, this.state.blobName);} }>Create Blob</button>
+            <Locations onChange={this.handleLocation} /><br/>
+            <button className="regBut" onClick={ () => {this.submit(this.state.groupName, this.state.blobName, this.state.location);} }>Create Blob</button>
           </div>
         </Modal>
       </div>

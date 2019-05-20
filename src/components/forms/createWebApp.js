@@ -3,6 +3,7 @@ import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { BASE_URL } from '../../config';
+import Locations from  '../Location';
 
 class WebApp extends React.Component {
   constructor(props) {
@@ -11,9 +12,14 @@ class WebApp extends React.Component {
       groupName: this.props.groupName,
       webAppName: '',
       webAppGitRepo: '',
-      servicePlanName: '',
+      servicePlanName: '', 
+      location:'',
       openWebApp: false
     };
+  }
+
+  handleLocation = (location) => {
+    this.setState({location: location});
   }
   
   //WebApp handlers
@@ -25,7 +31,7 @@ class WebApp extends React.Component {
     this.setState({ openWebApp: false });
   };
 
-  submit(groupName, webAppName, webAppGitRepo, servicePlanName) {
+  submit(groupName, webAppName, webAppGitRepo, servicePlanName, location) {
 
     const authToken = localStorage.getItem('authToken');
 
@@ -39,7 +45,8 @@ class WebApp extends React.Component {
         groupName: groupName,
         webAppName: webAppName,
         webAppGitRepo: webAppGitRepo,
-        servicePlanName: servicePlanName
+        servicePlanName: servicePlanName,
+        location: location
       })
     })
       .then((response) => response.json())
@@ -63,6 +70,7 @@ class WebApp extends React.Component {
   }
   
   render() {
+    console.log(this.state.location);
     return (
       <div className="container">
         <Button onClick={this.handleOpenWebApp}>Open Web App</Button>
@@ -72,7 +80,7 @@ class WebApp extends React.Component {
           open={this.state.openWebApp}
           onClose={this.handleCloseWebApp}
         >
-          <div className="paperCard2">
+          <div className="paperCard1">
             <h1>Create Web App</h1>
 
             <TextField
@@ -96,7 +104,9 @@ class WebApp extends React.Component {
               value={this.state.servicePlanName}
               onChange={(e) => this.setState({servicePlanName: e.target.value})}
             /><br/>
-            <button className="regBut" onClick={ () => {this.submit(this.state.groupName, this.state.webAppName, this.state.webAppGitRepo, this.state.servicePlanName);} }>Create Web App</button>
+            <Locations onChange={this.handleLocation} /><br/>
+
+            <button className="regBut" onClick={ () => {this.submit(this.state.groupName, this.state.webAppName, this.state.webAppGitRepo, this.state.servicePlanName, this.state.location);} }>Create Web App</button>
           </div>
         </Modal>
       </div>

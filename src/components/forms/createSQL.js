@@ -3,6 +3,7 @@ import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { BASE_URL } from '../../config';
+import Locations from  '../Location';
 
 class SQL extends React.Component {
   constructor(props) {
@@ -13,10 +14,15 @@ class SQL extends React.Component {
       serverPassword: '', 
       serverName: '',
       dbName: '',
+      location: '',
       openSQL: false,
     };
   }
   
+  handleLocation = (location) => {
+    this.setState({location: location});
+  }
+
   //SQL handlers
   handleOpenSQL = () => {
     this.setState({ openSQL: true });
@@ -26,7 +32,7 @@ class SQL extends React.Component {
     this.setState({ openSQL: false });
   };
 
-  submit(groupName, serverUsername, serverPassword, serverName, dbName) {
+  submit(groupName, serverUsername, serverPassword, serverName, dbName, location) {
 
     const authToken = localStorage.getItem('authToken');
 
@@ -41,7 +47,8 @@ class SQL extends React.Component {
         serverUsername: serverUsername,
         serverPassword: serverPassword,
         serverName: serverName,
-        dbName: dbName
+        dbName: dbName,
+        location: location
       })
     })
       .then((response) => response.json())
@@ -105,7 +112,9 @@ class SQL extends React.Component {
               value={this.state.dbName}
               onChange={(e) => this.setState({dbName: e.target.value})}
             /><br/>
-            <button className="regBut" onClick={ () => {this.submit(this.state.groupName, this.state.serverUsername, this.state.serverPassword, this.state.serverName, this.state.dbName);} }>Create SQL</button>
+            <Locations onChange={this.handleLocation} /><br/>
+
+            <button className="regBut" onClick={ () => {this.submit(this.state.groupName, this.state.serverUsername, this.state.serverPassword, this.state.serverName, this.state.dbName, this.state.location);} }>Create SQL</button>
           </div>
         </Modal>
       </div>

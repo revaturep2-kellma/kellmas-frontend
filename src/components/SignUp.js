@@ -2,6 +2,8 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import logo from '../newcloudlife.png';
 import { BASE_URL } from '../config';
+import Locations from  './Location';
+
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -9,10 +11,15 @@ class SignUp extends React.Component {
     this.state = {
       username: '',
       password: '',
+      location: '',
     };
   }
 
-  submit(username, password, azDomain) {
+  handleLocation = (location) => {
+    this.setState({location: location});
+  }
+
+  submit(username, password, location) {
 
     console.log(username);
     fetch(`${BASE_URL}/adminUsers`, {
@@ -23,6 +30,7 @@ class SignUp extends React.Component {
       body: JSON.stringify({
         username: username,
         password: password,
+        location: location
       })
     })
       .then((response) => response.json())
@@ -64,9 +72,10 @@ class SignUp extends React.Component {
             label="Password"
             value={this.state.password}
             onChange={(e) => this.setState({password: e.target.value})}
-          /><br/><br/>
+          /><br/>
+          <Locations onChange={this.handleLocation} /><br/>
 
-          <button className="regBut" onClick={ () => {this.submit(this.state.username, this.state.password);} }>Sign Up</button>
+          <button className="regBut" onClick={ () => {this.submit(this.state.username, this.state.password, this.state.location);} }>Sign Up</button>
         </div>
       </div>
     );

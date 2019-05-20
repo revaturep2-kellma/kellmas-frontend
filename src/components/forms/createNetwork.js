@@ -3,6 +3,7 @@ import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { BASE_URL } from '../../config';
+import Locations from  '../Location';
 
 class Network extends React.Component {
   constructor(props) {
@@ -10,8 +11,13 @@ class Network extends React.Component {
     this.state = {
       groupName: this.props.groupName,
       netName: '',
+      location:'',
       openNet: false
     };
+  }
+
+  handleLocation = (location) => {
+    this.setState({location: location});
   }
   
   //Net handlers
@@ -23,7 +29,7 @@ class Network extends React.Component {
     this.setState({ openNet: false });
   };
 
-  submit(groupName, netName) {
+  submit(groupName, netName, location) {
 
     const authToken = localStorage.getItem('authToken');
 
@@ -35,7 +41,8 @@ class Network extends React.Component {
       },
       body: JSON.stringify({
         groupName: groupName,
-        netName: netName
+        netName: netName,
+        location: location
       })
     })
       .then((response) => response.json())
@@ -69,9 +76,7 @@ class Network extends React.Component {
           onClose={this.handleCloseNet}
         >
           <div className="paperCard">
-            <div className="h1Div">
-              <h1>Create Network</h1>
-            </div>
+            <h1>Create Network</h1>
 
             <TextField
               type="text"
@@ -80,7 +85,8 @@ class Network extends React.Component {
               value={this.state.netName}
               onChange={(e) => this.setState({netName: e.target.value})}
             /><br/>
-            <button className="regBut" onClick={ () => {this.submit(this.state.groupName, this.state.netName);} }>Create Network</button>
+            <Locations onChange={this.handleLocation} /><br/>
+            <button className="regBut" onClick={ () => {this.submit(this.state.groupName, this.state.netName, this.state.location);} }>Create Network</button>
           </div>
         </Modal>
       </div>
