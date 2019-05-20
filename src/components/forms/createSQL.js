@@ -50,7 +50,7 @@ class SQL extends React.Component {
        * make sure to check for responseJson.success! */
         if(responseJson.success){
           // return this.props.navigation.goBack();
-          this.handleCloseUser();
+          this.handleCloseSQL();
 
         }else{
           alert(responseJson.error);
