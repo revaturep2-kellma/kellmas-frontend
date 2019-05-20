@@ -38,7 +38,7 @@ class Home extends React.Component {
 
   logout() {
     localStorage.removeItem('authToken');
-    this.props.history.push('/');
+    window.location = `${BASE_URL}/auth/openid/logout`;
   }
 
   render() {
