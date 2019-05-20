@@ -14,24 +14,25 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      resources: []
     };
   }
 
-  
+  componentDidMount() {
+    this.getResources();
+  }
 
-
-  someFunc() {
+  getResources() {
     const authToken = localStorage.getItem('authToken');
 
-    fetch(`${BASE_URL}/main/`, {
+    fetch(`${BASE_URL}/resources/`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${authToken}`
       }
     })
       .then(res => res.json())
-      .then(res => console.log(res))
+      .then(res => this.setState({resources: res}))
       .catch(err => console.error(err));
   }
 
@@ -55,6 +56,10 @@ class Home extends React.Component {
       );
     }
     // console.log(this.state.openVM);
+    const resources = this.state.resources.map(resource => {
+      return <li key={resource.name}>{resource.name} <span>({resource.type})</span></li>;
+    });
+
     return (
       <div className="container">
         <div>
@@ -65,8 +70,10 @@ class Home extends React.Component {
           <BlobStorageAccount groupName={groupName} />
           <Network groupName={groupName} />
           <SQL groupName={groupName} />
-
-          <span>some spacer text so I can see my damn name:&nbsp;</span>
+          <h2>Resources</h2>
+          <ul>
+            {resources}
+          </ul>
           <span>{groupName}</span>
           <button onClick={() => this.logout()}>log out</button>
         </div>
