@@ -11,6 +11,7 @@ class WebApp extends React.Component {
       groupName: this.props.groupName,
       webAppName: '',
       webAppGitRepo: '',
+      servicePlanName: '',
       openWebApp: false
     };
   }
@@ -24,7 +25,7 @@ class WebApp extends React.Component {
     this.setState({ openWebApp: false });
   };
 
-  submit(groupName, webAppName, webAppGitRepo) {
+  submit(groupName, webAppName, webAppGitRepo, servicePlanName) {
 
     const authToken = localStorage.getItem('authToken');
 
@@ -37,7 +38,8 @@ class WebApp extends React.Component {
       body: JSON.stringify({
         groupName: groupName,
         webAppName: webAppName,
-        webAppGitRepo: webAppGitRepo
+        webAppGitRepo: webAppGitRepo,
+        servicePlanName: servicePlanName
       })
     })
       .then((response) => response.json())
@@ -70,7 +72,7 @@ class WebApp extends React.Component {
           open={this.state.openWebApp}
           onClose={this.handleCloseWebApp}
         >
-          <div className="paperCard">
+          <div className="paperCard2">
             <h1>Create Web App</h1>
 
             <TextField
@@ -87,7 +89,14 @@ class WebApp extends React.Component {
               value={this.state.webAppGitRepo}
               onChange={(e) => this.setState({webAppGitRepo: e.target.value})}
             /><br/>
-            <button className="regBut" onClick={ () => {this.submit(this.state.groupName, this.state.webAppName, this.state.webAppGitRepo);} }>Create Web App</button>
+            <TextField
+              type="text"
+              variant="outlined"
+              label="Service Plan Name"
+              value={this.state.servicePlanName}
+              onChange={(e) => this.setState({servicePlanName: e.target.value})}
+            /><br/>
+            <button className="regBut" onClick={ () => {this.submit(this.state.groupName, this.state.webAppName, this.state.webAppGitRepo, this.state.servicePlanName);} }>Create Web App</button>
           </div>
         </Modal>
       </div>

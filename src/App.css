@@ -101,6 +101,19 @@
   flex-direction: column;
 }
 
+.paperCard2 {
+  position: relative;
+  left: 32%;
+  top: 10%;
+  padding: 20px;
+  height: 400px;
+  width: 500px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 .h1Div {
   margin-bottom: 6%;
 }
