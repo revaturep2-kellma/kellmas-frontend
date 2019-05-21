@@ -91,9 +91,9 @@
 .paperCard1 {
   position: relative;
   left: 32%;
-  top: 10%;
+  top: 5%;
   padding: 20px;
-  height: 500px;
+  height: 550px;
   width: 500px;
   background-color: white;
   display: flex;
@@ -116,4 +116,18 @@
 
 .h1Div {
   margin-bottom: 6%;
+}
+
+.service {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

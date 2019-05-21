@@ -1,6 +1,7 @@
 import React from 'react';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
 
 class locationDropDown extends React.Component {
   constructor(props) {
@@ -56,21 +57,27 @@ class locationDropDown extends React.Component {
     });
     return (
       <div className="container">
-        <Select
-          native
-          value={this.state.location}
-          onChange={(e) => this.handleLocation(e.target.value)}
-          input={
-            <OutlinedInput
-              name="Location"
-              labelWidth={this.state.labelWidth}
-              id="outlined-location-native-simple"
-            />
-          }
-        >
-          {elements}
-        </Select>
+        <InputLabel htmlFor="filled-age-native-simple">Location</InputLabel>
+
+        <div>
+
+          <Select
+            native
+            value={this.state.location}
+            onChange={(e) => this.handleLocation(e.target.value)}
+            input={
+              <OutlinedInput
+                name="Location"
+                labelWidth={this.state.labelWidth}
+                id="outlined-location-native-simple"
+              />
+            }
+          >
+            {elements}
+          </Select>
+        </div>
       </div>
+        
     );
   }
 }

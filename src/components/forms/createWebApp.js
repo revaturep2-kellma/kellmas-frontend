@@ -4,6 +4,9 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { BASE_URL } from '../../config';
 import Locations from  '../Location';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
 
 class WebApp extends React.Component {
   constructor(props) {
@@ -13,8 +16,10 @@ class WebApp extends React.Component {
       webAppName: '',
       webAppGitRepo: '',
       servicePlanName: '', 
+      servicePlanType: '',
       location:'',
       webAppType: '',
+      labelWidth: 0,
       openWebApp: false
     };
   }
@@ -32,7 +37,7 @@ class WebApp extends React.Component {
     this.setState({ openWebApp: false });
   };
 
-  submit(groupName, webAppName, webAppGitRepo, servicePlanName, location, webAppType) {
+  submit(groupName, webAppName, webAppGitRepo, servicePlanName, servicePlanType, location, webAppType) {
 
     const authToken = localStorage.getItem('authToken');
 
@@ -47,6 +52,7 @@ class WebApp extends React.Component {
         webAppName: webAppName,
         webAppGitRepo: webAppGitRepo,
         servicePlanName: servicePlanName,
+        servicePlanType: servicePlanType,
         location: location,
         webAppType: webAppType
       })
@@ -97,10 +103,18 @@ class WebApp extends React.Component {
       "NODE|10.14",
     ]; 
 
+
     let elements = nodeType.map(node => {
       return <option key={node} value={node}>{node}</option>;
     });
-    console.log(this.state.location);
+
+    let planTypes = ["", "B1", "B2", "B3", "D1", "F1", "FREE", "P1V2", "P2V2", "P3V2", "PC2", "PC3", "PC4", "S1", "S2", "S3", "SHARED"];
+
+    let types = planTypes.map(type => {
+      return <option key={type} value={type}>{type}</option>;
+    });
+
+
     return (
       <div className="container">
         <Button onClick={this.handleOpenWebApp}>Open Web App</Button>
@@ -127,30 +141,51 @@ class WebApp extends React.Component {
               value={this.state.webAppGitRepo}
               onChange={(e) => this.setState({webAppGitRepo: e.target.value})}
             /><br/>
-            <TextField
-              type="text"
-              variant="outlined"
-              label="Service Plan Name"
-              value={this.state.servicePlanName}
-              onChange={(e) => this.setState({servicePlanName: e.target.value})}
-            /><br/>
+            <div className="service">
+              <TextField
+                type="text"
+                variant="outlined"
+                label="Service Plan Name"
+                value={this.state.servicePlanName}
+                onChange={(e) => this.setState({servicePlanName: e.target.value})}
+              /><br/>
+              <div className="inner">
+                <InputLabel htmlFor="filled-age-native-simple">Service Plan Type</InputLabel>
+                <Select
+                  native
+                  value={this.state.servicePlanType}
+                  onChange={(e) => this.setState({servicePlanType: e.target.value})}
+                  input={
+                    <OutlinedInput
+                      name="Service Plan Types"
+                      labelWidth={this.state.labelWidth}
+                      id="outlined-servicePlanType-native-simple"
+                    />
+                  }
+                >
+                  {types}
+                </Select><br/>
+              </div>
+            </div>
             <Locations onChange={this.handleLocation} /><br/>
+
+            <InputLabel htmlFor="filled-WebAppType-native-simple">Web App Type</InputLabel>
             <Select
               native
               value={this.state.webAppType}
               onChange={(e) => this.setState({webAppType: e.target.value})}
               input={
                 <OutlinedInput
-                  name="Location"
+                  name="Web App Type"
                   labelWidth={this.state.labelWidth}
-                  id="outlined-location-native-simple"
+                  id="outlined-webAppType-native-simple"
                 />
               }
             >
               {elements}
             </Select><br/>
 
-            <button className="regBut" onClick={ () => {this.submit(this.state.groupName, this.state.webAppName, this.state.webAppGitRepo, this.state.servicePlanName, this.state.location, this.state.webAppType);} }>Create Web App</button>
+            <button className="regBut" onClick={ () => {this.submit(this.state.groupName, this.state.webAppName, this.state.webAppGitRepo, this.state.servicePlanName, this.state.servicePlanType, this.state.location, this.state.webAppType);} }>Create Web App</button>
           </div>
         </Modal>
       </div>
