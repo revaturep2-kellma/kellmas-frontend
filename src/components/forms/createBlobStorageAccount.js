@@ -100,7 +100,7 @@ class BlobStorageAccount extends React.Component {
             /><br/>
             <Locations onChange={this.handleLocation} /><br/>
 
-            <InputLabel htmlFor="filled-age-native-simple">Type of storage Plan</InputLabel>
+            <InputLabel htmlFor="filled-storagePlan-native-simple">Type of storage Plan</InputLabel>
             <Select
               native
               value={this.state.storagePlan}
