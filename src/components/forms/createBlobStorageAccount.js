@@ -4,6 +4,9 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { BASE_URL } from '../../config';
 import Locations from  '../Location';
+import InputLabel from '@material-ui/core/InputLabel';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import Select from '@material-ui/core/Select';
 
 class BlobStorageAccount extends React.Component {
   constructor(props) {
@@ -12,6 +15,7 @@ class BlobStorageAccount extends React.Component {
       groupName: this.props.groupName,
       blobName: '',
       location:'',
+      storagePlan: '',
       openBlob: false
     };
   }
@@ -29,7 +33,7 @@ class BlobStorageAccount extends React.Component {
     this.setState({ openBlob: false });
   };
 
-  submit(groupName, blobName, location) {
+  submit(groupName, blobName, location, storagePlan) {
 
     const authToken = localStorage.getItem('authToken');
 
@@ -42,7 +46,8 @@ class BlobStorageAccount extends React.Component {
       body: JSON.stringify({
         groupName: groupName,
         blobName: blobName,
-        location: location
+        location: location,
+        storagePlan: storagePlan
       })
     })
       .then((response) => response.json())
@@ -67,6 +72,12 @@ class BlobStorageAccount extends React.Component {
   
   
   render() {
+    let storageTypes =["", "Premium_LRS", "Premium_ZRS", "Standard_GRS", "Standard_LRS", "Standard_RAGRS", "Standard_ZRS"];
+
+    let types = storageTypes.map(type => {
+      return <option key={type} value={type}>{type}</option>;
+    });
+
     console.log(this.state.location);
     return (
       <div className="container">
@@ -77,7 +88,7 @@ class BlobStorageAccount extends React.Component {
           open={this.state.openBlob}
           onClose={this.handleCloseBlob}
         >
-          <div className="paperCard">
+          <div className="paperCard3">
             <h1>Create Blob Storage</h1>
               
             <TextField
@@ -88,7 +99,23 @@ class BlobStorageAccount extends React.Component {
               onChange={(e) => this.setState({blobName: e.target.value})}
             /><br/>
             <Locations onChange={this.handleLocation} /><br/>
-            <button className="regBut" onClick={ () => {this.submit(this.state.groupName, this.state.blobName, this.state.location);} }>Create Blob</button>
+
+            <InputLabel htmlFor="filled-age-native-simple">Type of storage Plan</InputLabel>
+            <Select
+              native
+              value={this.state.storagePlan}
+              onChange={(e) => this.setState({storagePlan: e.target.value})}
+              input={
+                <OutlinedInput
+                  name="Service Plan Types"
+                  labelWidth={this.state.labelWidth}
+                  id="outlined-storagePlan-native-simple"
+                />
+              }
+            >
+              {types}
+            </Select><br/>
+            <button className="regBut" onClick={ () => {this.submit(this.state.groupName, this.state.blobName, this.state.location, this.state.storagePlan);} }>Create Blob</button>
           </div>
         </Modal>
       </div>
