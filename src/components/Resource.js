@@ -82,9 +82,9 @@ export default class Resource extends Component {
 
     return (
       <React.Fragment>
-        <TableRow key={resource.id} onClick={() => this.handleOpenResource()}>
-          <TableCell align="center">{resource.name}</TableCell>
-          <TableCell align="center">{resource.type}</TableCell>
+        <TableRow key={resource.id}>
+          <TableCell align="center" onClick={() => this.handleOpenResource()}>{resource.name}</TableCell>
+          <TableCell align="center" onClick={() => this.handleOpenResource()}>{resource.type}</TableCell>
           <TableCell align="center"><button onClick={() => this.deleteResource(resource.id)}>delete</button></TableCell>
         </TableRow>
         <Modal
