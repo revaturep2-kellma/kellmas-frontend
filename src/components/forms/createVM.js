@@ -15,7 +15,9 @@ export class CreateVM extends Component {
       vmName: '',
       netName: '',
       size: '',
+      labelWidth: 0,
       openVM: false
+      
     };
   }
   //VM handlers

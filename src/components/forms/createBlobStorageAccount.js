@@ -16,6 +16,7 @@ class BlobStorageAccount extends React.Component {
       blobName: '',
       location:'',
       storagePlan: '',
+      labelWidth: 0,
       openBlob: false
     };
   }
