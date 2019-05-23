@@ -12,7 +12,6 @@ class BlobStorageAccount extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      groupName: this.props.groupName,
       blobName: '',
       location:'',
       storagePlan: '',
@@ -34,7 +33,7 @@ class BlobStorageAccount extends React.Component {
     this.setState({ openBlob: false });
   };
 
-  submit(groupName, blobName, location, storagePlan) {
+  submit(blobName, location, storagePlan) {
 
     const authToken = localStorage.getItem('authToken');
 
@@ -45,7 +44,6 @@ class BlobStorageAccount extends React.Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        groupName: groupName,
         blobName: blobName,
         location: location,
         storagePlan: storagePlan
@@ -79,10 +77,9 @@ class BlobStorageAccount extends React.Component {
       return <option key={type} value={type}>{type}</option>;
     });
 
-    console.log(this.state.location);
     return (
       <div className="container">
-        <Button onClick={this.handleOpenBlob}>Open Blob</Button>
+        <Button onClick={this.handleOpenBlob}>Create Blob</Button>
         <Modal
           aria-labelledby="Blob-Modal"
           aria-describedby="simple-modal-description"
@@ -116,7 +113,7 @@ class BlobStorageAccount extends React.Component {
             >
               {types}
             </Select><br/>
-            <button className="regBut" onClick={ () => {this.submit(this.state.groupName, this.state.blobName, this.state.location, this.state.storagePlan);} }>Create Blob</button>
+            <button className="regBut" onClick={ () => {this.submit(this.state.blobName, this.state.location, this.state.storagePlan);} }>Create Blob</button>
           </div>
         </Modal>
       </div>

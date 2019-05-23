@@ -8,7 +8,6 @@ export class CreateUsers extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      groupName: this.props.groupName,
       username: '',
       password: '',
       openUser: false
@@ -23,7 +22,7 @@ export class CreateUsers extends Component {
     this.setState({ openUser: false });
   };
 
-  submit(groupName, username, password) {
+  submit(username, password) {
 
     const authToken = localStorage.getItem('authToken');
 
@@ -34,7 +33,6 @@ export class CreateUsers extends Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        groupName: groupName,
         username: username,
         password: password,
       })
@@ -62,7 +60,7 @@ export class CreateUsers extends Component {
   render() {
     return (
       <div className="container">
-        <Button onClick={this.handleOpenUser}>Open User</Button>
+        <Button onClick={this.handleOpenUser}>Create User</Button>
         <Modal
           aria-labelledby="User-Modal"
           aria-describedby="simple-modal-description"
@@ -86,7 +84,7 @@ export class CreateUsers extends Component {
               value={this.state.password}
               onChange={(e) => this.setState({password: e.target.value})}
             /><br/>
-            <button className="regBut" onClick={ () => {this.submit(this.state.groupName, this.state.username, this.state.password);} }>Create User</button>
+            <button className="regBut" onClick={ () => {this.submit(this.state.username, this.state.password);} }>Create User</button>
           </div>
         </Modal>
       </div>

@@ -11,7 +11,6 @@ export class CreateVM extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      groupName: this.props.groupName,
       vmName: '',
       netName: '',
       size: '',
@@ -29,7 +28,7 @@ export class CreateVM extends Component {
     this.setState({ openVM: false });
   };
 
-  submit(groupName, vmName, netName, size) {
+  submit(vmName, netName, size) {
 
     const authToken = localStorage.getItem('authToken');
 
@@ -40,7 +39,6 @@ export class CreateVM extends Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        groupName: groupName,
         vmName: vmName,
         netName: netName,
         size: size
@@ -214,7 +212,7 @@ export class CreateVM extends Component {
     });
     return (
       <div className="container">
-        <Button onClick={this.handleOpenVM}>Open VM</Button>
+        <Button onClick={this.handleOpenVM}>Create VM</Button>
         <Modal
           aria-labelledby="VM-Modal"
           aria-describedby="simple-modal-description"
@@ -253,7 +251,7 @@ export class CreateVM extends Component {
             >
               {elements}
             </Select><br/>
-            <button className="regBut" onClick={ () => {this.submit(this.state.groupName, this.state.vmName, this.state.netName, this.state.size);} }>Create VM</button>
+            <button className="regBut" onClick={ () => {this.submit(this.state.vmName, this.state.netName, this.state.size);} }>Create VM</button>
           </div>
         </Modal>
       </div>

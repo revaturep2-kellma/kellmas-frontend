@@ -9,7 +9,6 @@ class SQL extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      groupName: this.props.groupName,
       serverUsername: '',
       serverPassword: '', 
       serverName: '',
@@ -32,7 +31,7 @@ class SQL extends React.Component {
     this.setState({ openSQL: false });
   };
 
-  submit(groupName, serverUsername, serverPassword, serverName, dbName, location) {
+  submit(serverUsername, serverPassword, serverName, dbName, location) {
 
     const authToken = localStorage.getItem('authToken');
 
@@ -43,7 +42,6 @@ class SQL extends React.Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        groupName: groupName,
         serverUsername: serverUsername,
         serverPassword: serverPassword,
         serverName: serverName,
@@ -74,7 +72,7 @@ class SQL extends React.Component {
   render() {
     return (
       <div className="container">
-        <Button onClick={this.handleOpenSQL}>Open SQL</Button>
+        <Button onClick={this.handleOpenSQL}>Create SQL</Button>
         <Modal
           aria-labelledby="SQL-Modal"
           aria-describedby="simple-modal-description"
@@ -114,7 +112,7 @@ class SQL extends React.Component {
             /><br/>
             <Locations onChange={this.handleLocation} /><br/>
 
-            <button className="regBut" onClick={ () => {this.submit(this.state.groupName, this.state.serverUsername, this.state.serverPassword, this.state.serverName, this.state.dbName, this.state.location);} }>Create SQL</button>
+            <button className="regBut" onClick={ () => {this.submit(this.state.serverUsername, this.state.serverPassword, this.state.serverName, this.state.dbName, this.state.location);} }>Create SQL</button>
           </div>
         </Modal>
       </div>

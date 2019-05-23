@@ -80,13 +80,13 @@ class Home extends React.Component {
     return (
       <div className="container">
         <div>
-          <CreateUsers groupName={groupName} />
-          <CreateVM groupName={groupName} />
-          <CreateWebApp groupName={groupName} />
+          <CreateUsers />
+          <CreateVM />
+          <CreateWebApp />
           {/* <AppServicePlan groupName={groupName} /> */}
-          <BlobStorageAccount groupName={groupName} />
-          <Network groupName={groupName} />
-          <SQL groupName={groupName} />
+          <BlobStorageAccount />
+          <Network />
+          <SQL />
           <h2>Resources</h2>
           <ul>
             {resources}

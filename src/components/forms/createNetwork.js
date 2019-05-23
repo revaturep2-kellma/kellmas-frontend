@@ -9,7 +9,6 @@ class Network extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      groupName: this.props.groupName,
       netName: '',
       location:'',
       openNet: false
@@ -29,7 +28,7 @@ class Network extends React.Component {
     this.setState({ openNet: false });
   };
 
-  submit(groupName, netName, location) {
+  submit(netName, location) {
 
     const authToken = localStorage.getItem('authToken');
 
@@ -40,7 +39,6 @@ class Network extends React.Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        groupName: groupName,
         netName: netName,
         location: location
       })
@@ -68,7 +66,7 @@ class Network extends React.Component {
   render() {
     return (
       <div className="container">
-        <Button onClick={this.handleOpenNet}>Open Net</Button>
+        <Button onClick={this.handleOpenNet}>Create Net</Button>
         <Modal
           aria-labelledby="Network-Modal"
           aria-describedby="simple-modal-description"
@@ -86,7 +84,7 @@ class Network extends React.Component {
               onChange={(e) => this.setState({netName: e.target.value})}
             /><br/>
             <Locations onChange={this.handleLocation} /><br/>
-            <button className="regBut" onClick={ () => {this.submit(this.state.groupName, this.state.netName, this.state.location);} }>Create Network</button>
+            <button className="regBut" onClick={ () => {this.submit(this.state.netName, this.state.location);} }>Create Network</button>
           </div>
         </Modal>
       </div>

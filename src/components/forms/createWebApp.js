@@ -12,7 +12,6 @@ class WebApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      groupName: this.props.groupName,
       webAppName: '',
       webAppGitRepo: '',
       servicePlanName: '', 
@@ -37,7 +36,7 @@ class WebApp extends React.Component {
     this.setState({ openWebApp: false });
   };
 
-  submit(groupName, webAppName, webAppGitRepo, servicePlanName, servicePlanType, location, webAppType) {
+  submit(webAppName, webAppGitRepo, servicePlanName, servicePlanType, location, webAppType) {
 
     const authToken = localStorage.getItem('authToken');
 
@@ -48,7 +47,6 @@ class WebApp extends React.Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        groupName: groupName,
         webAppName: webAppName,
         webAppGitRepo: webAppGitRepo,
         servicePlanName: servicePlanName,
@@ -117,7 +115,7 @@ class WebApp extends React.Component {
 
     return (
       <div className="container">
-        <Button onClick={this.handleOpenWebApp}>Open Web App</Button>
+        <Button onClick={this.handleOpenWebApp}>Create Web App</Button>
         <Modal
           aria-labelledby="WebApp-Modal"
           aria-describedby="simple-modal-description"
@@ -185,7 +183,7 @@ class WebApp extends React.Component {
               {elements}
             </Select><br/>
 
-            <button className="regBut" onClick={ () => {this.submit(this.state.groupName, this.state.webAppName, this.state.webAppGitRepo, this.state.servicePlanName, this.state.servicePlanType, this.state.location, this.state.webAppType);} }>Create Web App</button>
+            <button className="regBut" onClick={ () => {this.submit(this.state.webAppName, this.state.webAppGitRepo, this.state.servicePlanName, this.state.servicePlanType, this.state.location, this.state.webAppType);} }>Create Web App</button>
           </div>
         </Modal>
       </div>
