@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
-import { BASE_URL } from '../../config';
+import { BASE_URL } from '../config';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import Select from '@material-ui/core/Select';
 
@@ -16,7 +16,7 @@ class UpdateUser extends React.Component {
     };
   }
 
-  
+
   handleOpenRole = () => {
     this.setState({ openRole: true });
   };
@@ -59,8 +59,8 @@ class UpdateUser extends React.Component {
       /* do something if there was an error with fetching */
       });
   }
-  
-  
+
+
   render() {
     let userRoles =["", "Owner", "Contributor", "Reader"];
 
@@ -70,7 +70,7 @@ class UpdateUser extends React.Component {
 
     return (
       <div className="container">
-        <Button onClick={this.handleOpenBlob}>Update User Role</Button>
+        <Button onClick={this.handleOpenRole}>Update User Role</Button>
         <Modal
           aria-labelledby="Blob-Modal"
           aria-describedby="simple-modal-description"
@@ -101,6 +101,5 @@ class UpdateUser extends React.Component {
     );
   }
 }
-  
-export default UpdateUser; 
-  
+
+export default UpdateUser;
