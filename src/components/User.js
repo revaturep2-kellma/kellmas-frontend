@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { BASE_URL } from '../config';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
+import UpdateUser from './UserRoleUpdate';
 
 export default class User extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ export default class User extends Component {
         <TableRow key={user.id}>
           <TableCell align="center">{user.principalName}</TableCell>
           <TableCell align="center">{user.roleDefinitionName}</TableCell>
-          <TableCell align="center"><button onClick={() => console.log(user.id)}>Update</button></TableCell>
+          <TableCell align="center"><UpdateUser user={this.state.user} /></TableCell>
         </TableRow>
       </React.Fragment>
     );
