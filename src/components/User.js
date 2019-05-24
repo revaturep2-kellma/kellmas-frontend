@@ -20,7 +20,7 @@ export default class User extends Component {
         <TableRow key={user.id}>
           <TableCell align="center">{user.principalName}</TableCell>
           <TableCell align="center">{user.roleDefinitionName}</TableCell>
-          <TableCell align="center"><button onClick={() => console.log(user.id)}>delete</button></TableCell>
+          <TableCell align="center"><button onClick={() => console.log(user.id)}>Update</button></TableCell>
         </TableRow>
       </React.Fragment>
     );

@@ -48,7 +48,7 @@ export default class UserTable extends Component {
               <TableRow>
                 <TableCell align="center">Username</TableCell>
                 <TableCell align="center">Role</TableCell>
-                <TableCell align="center">Delete</TableCell>
+                <TableCell align="center">Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
