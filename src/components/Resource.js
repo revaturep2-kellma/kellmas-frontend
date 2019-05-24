@@ -58,10 +58,10 @@ export default class Resource extends Component {
   render() {
     const { resource } = this.state;
     let properties;
+    let otherProperties;
     console.log(resource);
 
     if (resource.type === 'Microsoft.Network/virtualNetworks') {
-      let otherProperties;
       if (resource.properties) {
         let subnets = resource.properties.subnets.map(subnet => subnet.properties.addressPrefix);
         otherProperties = (
@@ -71,14 +71,15 @@ export default class Resource extends Component {
           </React.Fragment>
         );
       }
-      properties = (
-        <React.Fragment>
-          <h1>{resource.name}</h1>
-          <h2>{resource.type}</h2>
-          {otherProperties}
-        </React.Fragment>
-      );
     }
+
+    properties = (
+      <React.Fragment>
+        <h1>{resource.name}</h1>
+        <h2>{resource.type}</h2>
+        {otherProperties}
+      </React.Fragment>
+    );
 
     return (
       <React.Fragment>
