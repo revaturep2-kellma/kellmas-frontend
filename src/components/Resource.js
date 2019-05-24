@@ -59,7 +59,7 @@ export default class Resource extends Component {
     const { resource } = this.state;
     let properties;
     let otherProperties;
-    console.log(resource);
+    // console.log(resource);
 
     if (resource.type === 'Microsoft.Network/virtualNetworks') {
       if (resource.properties) {

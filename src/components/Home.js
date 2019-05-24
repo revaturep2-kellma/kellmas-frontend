@@ -9,42 +9,16 @@ import CreateWebApp from './forms/createWebApp';
 import BlobStorageAccount from './forms/createBlobStorageAccount';
 import Network from './forms/createNetwork';
 import SQL from './forms/createSQL';
+import ResourceTable from './ResourceTable';
 import UserTable from './UserTable';
-import Resource from './Resource';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      resources: [],
-      users: []
+
     };
-  }
-
-  componentDidMount() {
-    this.getResources();
-    setInterval(this.getResources.bind(this), 1000 * 60);
-  }
-
-  getResources() {
-    const authToken = localStorage.getItem('authToken');
-
-    fetch(`${BASE_URL}/resources/`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${authToken}`
-      }
-    })
-      .then(res => res.json())
-      .then(res => this.setState({resources: res}))
-      .catch(err => console.error(err));
   }
 
   logout() {
@@ -52,27 +26,10 @@ class Home extends React.Component {
     window.location = `${BASE_URL}/auth/openid/logout`;
   }
 
-  deleteResource(id) {
-    const authToken = localStorage.getItem('authToken');
-
-    console.log(id);
-    fetch(`${BASE_URL}/resources`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${authToken}`
-      },
-      body: JSON.stringify({id})
-    })
-      .then(() => this.getResources())
-      .catch(err => console.error(err));
-  }
-
   render() {
     const authToken = localStorage.getItem('authToken');
     let decodedToken;
     let groupName;
-    console.log(this.state);
     if (authToken) {
       decodedToken = jwtDecode(authToken);
       let email = decodedToken.preferred_username.split('@');
@@ -82,14 +39,12 @@ class Home extends React.Component {
         <Redirect to="/" />
       );
     }
-    // console.log(this.state.openVM);
-    const resources = this.state.resources.map(resource => {
-      return <Resource key={resource.id} resource={resource} getResources={this.getResources} />;
-    });
 
     return (
       <div className="container">
         <div>
+          <span>Logged in as: {groupName}</span>
+          <button onClick={() => this.logout()}>log out</button>
           <CreateUsers />
           <CreateVM />
           <CreateWebApp />
@@ -97,24 +52,8 @@ class Home extends React.Component {
           <BlobStorageAccount />
           <Network />
           <SQL />
-          <h2>Resources</h2>
-          <Paper className="resource-table-root">
-            <Table className="resource-table">
-              <TableHead>
-                <TableRow>
-                  <TableCell align="center">Name</TableCell>
-                  <TableCell align="center">Type</TableCell>
-                  <TableCell align="center">Delete</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {resources}
-              </TableBody>
-            </Table>
-          </Paper>
+          <ResourceTable />
           <UserTable />
-          <span>{groupName}</span>
-          <button onClick={() => this.logout()}>log out</button>
         </div>
       </div>
     );
