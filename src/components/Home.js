@@ -17,8 +17,26 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      role: ''
     };
+  }
+
+  componentDidMount() {
+    this.getRole();
+  }
+
+  getRole() {
+    const authToken = localStorage.getItem('authToken');
+
+    fetch(`${BASE_URL}/roles/`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${authToken}`
+      }
+    })
+      .then(res => res.json())
+      .then(res => this.setState({role: res}))
+      .catch(err => console.error(err));
   }
 
   logout() {
@@ -39,6 +57,8 @@ class Home extends React.Component {
         <Redirect to="/" />
       );
     }
+
+    console.log(this.state.role);
 
     return (
       <div className="container">
