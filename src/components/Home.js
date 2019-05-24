@@ -9,6 +9,7 @@ import CreateWebApp from './forms/createWebApp';
 import BlobStorageAccount from './forms/createBlobStorageAccount';
 import Network from './forms/createNetwork';
 import SQL from './forms/createSQL';
+import UserTable from './UserTable';
 import Resource from './Resource';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -17,11 +18,13 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      resources: []
+      resources: [],
+      users: []
     };
   }
 
@@ -69,7 +72,7 @@ class Home extends React.Component {
     const authToken = localStorage.getItem('authToken');
     let decodedToken;
     let groupName;
-
+    console.log(this.state);
     if (authToken) {
       decodedToken = jwtDecode(authToken);
       let email = decodedToken.preferred_username.split('@');
@@ -109,6 +112,7 @@ class Home extends React.Component {
               </TableBody>
             </Table>
           </Paper>
+          <UserTable />
           <span>{groupName}</span>
           <button onClick={() => this.logout()}>log out</button>
         </div>
