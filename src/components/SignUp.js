@@ -39,6 +39,7 @@ class SignUp extends React.Component {
        * make sure to check for responseJson.success! */
         if(responseJson.success){
           // return this.props.navigation.goBack();
+          alert(responseJson.success);
           return this.props.history.push('/');
 
         }else{
