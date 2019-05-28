@@ -4,12 +4,17 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { BASE_URL } from '../../config';
 import Locations from  '../Location';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
 
 class Network extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      nsgName: '',
       netName: '',
+      netType: '',
       location:'',
       openNet: false
     };
@@ -28,7 +33,7 @@ class Network extends React.Component {
     this.setState({ openNet: false });
   };
 
-  submit(netName, location) {
+  submit(nsgName, netName, netType, location) {
 
     const authToken = localStorage.getItem('authToken');
 
@@ -39,7 +44,9 @@ class Network extends React.Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
+        nsgName: nsgName,
         netName: netName,
+        netType: netType,
         location: location
       })
     })
@@ -64,6 +71,12 @@ class Network extends React.Component {
   }
   
   render() {
+    let types =["", "Private", "Public"];
+
+    let type = types.map(typ => {
+      return <option key={typ} value={typ}>{typ}</option>;
+    });
+
     return (
       <div className="container">
         <Button onClick={this.handleOpenNet}>Create Net</Button>
@@ -73,9 +86,16 @@ class Network extends React.Component {
           open={this.state.openNet}
           onClose={this.handleCloseNet}
         >
-          <div className="paperCard">
+          <div className="paperCard3">
             <h1>Create Network</h1>
 
+            <TextField
+              type="text"
+              variant="outlined"
+              label="Network Security Group Name"
+              value={this.state.nsgName}
+              onChange={(e) => this.setState({nsgName: e.target.value})}
+            /><br/>
             <TextField
               type="text"
               variant="outlined"
@@ -83,8 +103,23 @@ class Network extends React.Component {
               value={this.state.netName}
               onChange={(e) => this.setState({netName: e.target.value})}
             /><br/>
+            <InputLabel htmlFor="filled-netType-native-simple">Network Type</InputLabel>
+            <Select
+              native
+              value={this.state.netType}
+              onChange={(e) => this.setState({netType: e.target.value})}
+              input={
+                <OutlinedInput
+                  name="netType"
+                  labelWidth={this.state.labelWidth}
+                  id="outlined-netType-native-simple"
+                />
+              }
+            >
+              {type}
+            </Select><br/>
             <Locations onChange={this.handleLocation} /><br/>
-            <button className="regBut" onClick={ () => {this.submit(this.state.netName, this.state.location);} }>Create Network</button>
+            <button className="regBut" onClick={ () => {this.submit(this.state.nsgName, this.state.netName, this.state.netType, this.state.location);} }>Create Network</button>
           </div>
         </Modal>
       </div>

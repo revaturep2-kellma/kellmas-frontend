@@ -219,7 +219,7 @@ export class CreateVM extends Component {
           open={this.state.openVM}
           onClose={this.handleCloseVM}
         >
-          <div className="paperCard3">
+          <div className="paperCard2">
             <h1>Create Virtual Machine</h1>
               
             <TextField

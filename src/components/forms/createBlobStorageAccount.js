@@ -86,7 +86,7 @@ class BlobStorageAccount extends React.Component {
           open={this.state.openBlob}
           onClose={this.handleCloseBlob}
         >
-          <div className="paperCard3">
+          <div className="paperCard2">
             <h1>Create Blob Storage</h1>
               
             <TextField
